@@ -1,0 +1,25 @@
+{
+  "income": [
+    "Salary",
+    "Business",
+    "Freelance",
+    "Investment",
+    "Gift",
+    "Other"
+  ],
+  "expense": [
+    "Food",
+    "Transport",
+    "Bills",
+    "Entertainment",
+    "Shopping",
+    "Healthcare",
+    "Education",
+    "Housing",
+    "Personal",
+    "Other"
+  ],
+  "metadata": {
+    "last_updated": "2026-02-16T19:15:00"
+  }
+}

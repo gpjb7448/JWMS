@@ -95,19 +95,46 @@ Year: 2026
 
 ## 💾 Data Storage
 
-Data is stored in plain text files using a simple format:
+**All data is stored in JSON format** for better structure and easier manipulation:
 
-**transactions.txt format:**
-```
-2026-02-01|income|5000.00|Salary|Monthly salary
-2026-02-15|expense|150.00|Food|Groceries
+**transactions.json structure:**
+```json
+{
+  "transactions": [
+    {
+      "id": "unique_id",
+      "date": "2026-02-01",
+      "type": "income",
+      "amount": 5000.00,
+      "category": "Salary",
+      "description": "Monthly salary"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-16T19:00:00",
+    "total_transactions": 1
+  }
+}
 ```
 
-**categories.txt format:**
+**categories.json structure:**
+```json
+{
+  "income": ["Salary", "Business", "Freelance", "Investment", "Gift", "Other"],
+  "expense": ["Food", "Transport", "Bills", "Entertainment", "Shopping", 
+              "Healthcare", "Education", "Housing", "Personal", "Other"],
+  "metadata": {
+    "last_updated": "2026-02-16T19:00:00"
+  }
+}
 ```
-income|Salary,Business,Freelance,Investment,Other
-expense|Food,Transport,Bills,Entertainment,Shopping,Healthcare,Education,Other
-```
+
+**Features:**
+- ✅ Structured JSON format
+- ✅ Automatic backups (keeps last 5 versions)
+- ✅ Metadata tracking (last updated, transaction count)
+- ✅ Easy to read and edit
+- ✅ CSV export capability
 
 ## 🎓 Step-by-Step Implementation Guide
 

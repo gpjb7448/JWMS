@@ -40,19 +40,11 @@ class CategoryManager:
         return False
     
     def save_categories(self):
-        """Save categories to file"""
-        lines = []
-        for cat_type, cats in self.categories.items():
-            lines.append(f"{cat_type}|{','.join(cats)}")
-        self.file_handler.save_categories(lines)
+        """Save categories to JSON file"""
+        self.file_handler.save_categories(self.categories)
     
     def load_categories(self):
-        """Load categories from file"""
-        lines = self.file_handler.load_categories()
-        if lines:
-            self.categories = {}
-            for line in lines:
-                parts = line.strip().split('|')
-                if len(parts) == 2:
-                    cat_type, cats_str = parts
-                    self.categories[cat_type] = cats_str.split(',')
+        """Load categories from JSON file"""
+        loaded_categories = self.file_handler.load_categories()
+        if loaded_categories:
+            self.categories = loaded_categories

@@ -282,31 +282,40 @@ class TransactionManager:
     
     def save_transactions(self):
         """
-        Save all transactions to file
+        Save all transactions to JSON file
         
-        STEP 1: Convert transactions to file format
-        STEP 2: Write to file using file handler
+        STEP 1: Pass transaction list to file handler
+        STEP 2: File handler converts to JSON format
         """
-        lines = [t.to_file_format() for t in self.transactions]
-        self.file_handler.save_transactions(lines)
+        self.file_handler.save_transactions(self.transactions)
     
     def load_transactions(self):
         """
-        Load transactions from file
+        Load transactions from JSON file
         
-        STEP 1: Read lines from file
-        STEP 2: Parse each line into Transaction object
+        STEP 1: Load transaction dictionaries from file
+        STEP 2: Convert each dictionary to Transaction object
         STEP 3: Add to transactions list
         """
-        lines = self.file_handler.load_transactions()
+        transaction_dicts = self.file_handler.load_transactions()
         self.transactions = []
         
-        for line in lines:
+        for trans_dict in transaction_dicts:
             try:
-                transaction = Transaction.from_file_format(line)
+                # Create transaction from dictionary
+                date = datetime.strptime(trans_dict['date'], "%Y-%m-%d").date()
+                transaction = Transaction(
+                    trans_dict['type'],
+                    trans_dict['amount'],
+                    trans_dict['category'],
+                    trans_dict['description'],
+                    date
+                )
+                # Restore the original ID
+                transaction.id = trans_dict['id']
                 self.transactions.append(transaction)
-            except (ValueError, IndexError) as e:
-                print(f"Warning: Skipping invalid transaction: {line}")
+            except (ValueError, KeyError) as e:
+                print(f"Warning: Skipping invalid transaction: {trans_dict}")
                 print(f"Error: {e}")
     
     def get_monthly_transactions(self, month, year):

@@ -1,0 +1,40 @@
+{
+  "transactions": [
+    {
+      "id": "sample-001",
+      "date": "2026-02-01",
+      "type": "income",
+      "amount": 5000.00,
+      "category": "Salary",
+      "description": "Monthly salary - February"
+    },
+    {
+      "id": "sample-002",
+      "date": "2026-02-05",
+      "type": "expense",
+      "amount": 450.00,
+      "category": "Food",
+      "description": "Grocery shopping"
+    },
+    {
+      "id": "sample-003",
+      "date": "2026-02-10",
+      "type": "expense",
+      "amount": 300.00,
+      "category": "Transport",
+      "description": "Monthly bus pass"
+    },
+    {
+      "id": "sample-004",
+      "date": "2026-02-15",
+      "type": "expense",
+      "amount": 1200.00,
+      "category": "Bills",
+      "description": "Electricity and internet bills"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-16T19:15:00",
+    "total_transactions": 4
+  }
+}
